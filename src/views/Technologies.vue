@@ -58,7 +58,7 @@ export default {
   },
   methods:{
     createTechnology(){
-      axios.post("https://jsonplaceholder.typicode.com/technology", this.technology).then((result) => {
+      axios.post("http://localhost:3000/technology", this.technology).then((result) => {
         console.log(result);
       });
       alert('Creado correctamente');
