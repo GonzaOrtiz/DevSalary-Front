@@ -62,6 +62,7 @@ export default {
     createTechnology(){
       axios.post("http://localhost:3000/technologies", this.technology).then((result) => {
         console.log(result);
+        this.pullTechnologies();
       });
       alert('Creado correctamente');
     },
