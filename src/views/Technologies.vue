@@ -29,7 +29,6 @@
             <tbody>
             <tr v-for="element in technologiesArray" :key="element.id">
               <td>{{ element.name }}</td>
-              <td><a @click="deleteTechnology(element)">Editar</a>&nbsp;
                 <button type="button" class="btn btn-success" @click="editTechnology(element)">Editar</button>&nbsp;
                 <button type="button" class="btn btn-danger" @click="deleteTechnology(element.id)">Eliminar</button>&nbsp;
                 <button type="button" class="btn btn-primary" @click="deleteTechnology(element.id)">Detalles</button>&nbsp;
@@ -102,7 +101,7 @@ export default {
     editTechnology(tech){
       this.technologyEdit.id = tech.id;
       this.technologyEdit.name = this.technology.name;
-      axios.delete("http://localhost:3000/technologies" + tech.id, this.technologyEdit).then((result) => {
+      axios.delete("http://localhost:3000/technologies/" + tech.id, this.technologyEdit).then((result) => {
         console.log(result);
         alert("Eliminado correctamente");
       });
