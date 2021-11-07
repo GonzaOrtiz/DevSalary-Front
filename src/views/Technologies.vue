@@ -29,7 +29,12 @@
             <tbody>
             <tr v-for="element in technologiesArray" :key="element.id">
               <td>{{ element.name }}</td>
-              <td><a href="">Editar</a><a href="">Eliminar</a><a href="">Detalle</a></td>
+              <td><a @click="deleteTechnology(element)">Editar</a>&nbsp;
+                <button type="button" class="btn btn-success" @click="editTechnology(element)">Editar</button>&nbsp;
+                <button type="button" class="btn btn-danger" @click="deleteTechnology(element.id)">Eliminar</button>&nbsp;
+                <button type="button" class="btn btn-primary" @click="deleteTechnology(element.id)">Detalles</button>&nbsp;
+
+                <a href="">Detalle</a></td>
             </tr>
             </tbody>
           </table>
@@ -48,12 +53,20 @@
 <script>
 import axios from "axios";
 
+
 export default {
   data(){
     return{
       tableView: false,
       technology:{
         name: null
+      },
+      technologyEdit:{
+        id : null,
+        name: null
+      },
+      idObj: {
+        id: null
       },
       technologiesArray: null,
     };
@@ -64,7 +77,14 @@ export default {
         console.log(result);
         this.pullTechnologies();
       });
-      alert('Creado correctamente');
+      alert("tecnologia guardada");
+      // Swal.fire({
+      //   position: 'top-center',
+      //   icon: 'success',
+      //   title: 'Tecnología guardada correctamente',
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
     },
     pullTechnologies(){
       axios.get("http://localhost:3000/technologies").then((result) => {
@@ -72,6 +92,21 @@ export default {
         console.log(result);
       });
 },
+    deleteTechnology(id){
+      this.idObj.id = id;
+      axios.delete("http://localhost:3000/technologies" + id, this.idObj).then((result) => {
+        console.log(result);
+        alert("Eliminado correctamente");
+      });
+    },
+    editTechnology(tech){
+      this.technologyEdit.id = tech.id;
+      this.technologyEdit.name = this.technology.name;
+      axios.delete("http://localhost:3000/technologies" + tech.id, this.technologyEdit).then((result) => {
+        console.log(result);
+        alert("Eliminado correctamente");
+      });
+    },
     btnRegresar(){
       this.tableView = false;
     },
