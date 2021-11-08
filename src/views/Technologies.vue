@@ -72,10 +72,6 @@ export default {
       technology:{
         name: null,
       },
-      technologyEdit:{
-        id: null,
-        name: null,
-      },
       idObj: {
         id: null,
       },
@@ -107,10 +103,12 @@ export default {
       });
     },
     editTechnology(){
-      axios.put("http://localhost:3000/technologies/" + this.technologyEdit.id , this.technologyEdit).then((result) => {
+      axios.put("http://localhost:3000/technologies/" + this.technology.id , this.technology).then((result) => {
         console.log(result);
         alert("Editado correctamente");
          this.pullTechnologies();
+      this.tableView = true;
+      this.editTechnologyView = false;
       });
     },
     btnRegresar(){
@@ -125,9 +123,8 @@ export default {
     btnEditTechnology(tech){
       this.editTechnologyView = true;
       this.tableView = false;
-      this.technologyEdit.id = tech.id;
+      this.technology.id = tech.id;
       this.technology.name = tech.name;
-      this.technologyEdit.name = this.technology.name;
     },
     btnRegresarEdit(){
       this.tableView = true;
