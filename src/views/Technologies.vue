@@ -84,6 +84,7 @@ export default {
       // })
       // this.tableView = true;
       this.newTechnologyView = false;
+      this.tableView = true,
     },
     pullTechnologies(){
       axios.get("http://localhost:3000/technologies").then((result) => {
@@ -93,17 +94,19 @@ export default {
 },
     deleteTechnology(id){
       this.idObj.id = id;
-      axios.delete("http://localhost:3000/technologies" + id, this.idObj).then((result) => {
+      axios.delete("http://localhost:3000/technologies" + this.idObj.id, this.idObj).then((result) => {
         console.log(result);
+         this.pullTechnologies();
         alert("Eliminado correctamente");
       });
     },
     editTechnology(tech){
       this.technologyEdit.id = tech.id;
       this.technologyEdit.name = this.technology.name;
-      axios.delete("http://localhost:3000/technologies/" + tech.id, this.technologyEdit).then((result) => {
+      axios.put("http://localhost:3000/technologies/" + tech.id, this.technologyEdit).then((result) => {
         console.log(result);
-        alert("Eliminado correctamente");
+        alert("Editado correctamente");
+         this.pullTechnologies();
       });
     },
     btnRegresar(){
