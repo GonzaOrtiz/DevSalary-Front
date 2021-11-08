@@ -4,7 +4,7 @@
     <div class="container">
       <h3 class="text-center mb-3">Tecnologías</h3>
       <hr>
-      <div v-if="tableView" class="d-flex justify-content-around">
+      <div v-if="newTechnologyView" class="d-flex justify-content-around">
         <div class="card col-5 text-center bg-light align-items-center shadow-lg">
           <h4 class="m-3">Ingrese el nombre de una Tecnología</h4>
           <input v-model="technology.name" class="mb-3"  placeholder="Ejemplo: Javascript">
@@ -17,7 +17,7 @@
           </div>
       </div>
 
-      <div v-if="!tableView" class="d-flex justify-content-around">
+      <div v-if="tableView" class="d-flex justify-content-around">
         <div class="card col-5 text-center bg-light align-items-center shadow-lg">
           <table class="table">
             <thead>
@@ -29,11 +29,11 @@
             <tbody>
             <tr v-for="element in technologiesArray" :key="element.id">
               <td>{{ element.name }}</td>
-                <button type="button" class="btn btn-success" @click="editTechnology(element)">Editar</button>&nbsp;
-                <button type="button" class="btn btn-danger" @click="deleteTechnology(element.id)">Eliminar</button>&nbsp;
-                <button type="button" class="btn btn-primary" @click="deleteTechnology(element.id)">Detalles</button>&nbsp;
-
-                <a href="">Detalle</a></td>
+              <td>
+                <button class="btn btn-success" @click="editTechnology(element)">Editar</button>&nbsp;
+                <button class="btn btn-danger" @click="deleteTechnology(element.id)">Eliminar</button>&nbsp;
+                <button class="btn btn-primary" @click="deleteTechnology(element.id)">Detalles</button>&nbsp;
+                </td>
             </tr>
             </tbody>
           </table>
@@ -41,9 +41,6 @@
         </div>
       </div>
 
-<!--      <div class="text-center mt-5">-->
-<!--        <button v-if="!tableView" class="btn btn-success btn-lg font-weight-bold  shadow-lg" @click="viewTechnologies" >Ver Tecnologías</button>-->
-<!--      </div>-->
     </div>
     </body>
   </div>
@@ -56,7 +53,8 @@ import axios from "axios";
 export default {
   data(){
     return{
-      tableView: false,
+      tableView: true,
+      newTechnologyView: false,
       technology:{
         name: null
       },
@@ -84,6 +82,8 @@ export default {
       //   showConfirmButton: false,
       //   timer: 1500
       // })
+      // this.tableView = true;
+      this.newTechnologyView = false;
     },
     pullTechnologies(){
       axios.get("http://localhost:3000/technologies").then((result) => {
@@ -107,10 +107,12 @@ export default {
       });
     },
     btnRegresar(){
-      this.tableView = false;
+      this.tableView = true;
+      this.newTechnologyView = false;
     },
     btnIrANuevo(){
-      this.tableView = true;
+      this.tableView = false;
+      this.newTechnologyView = true;
     }
 
   },
