@@ -30,7 +30,7 @@
             <tr v-for="element in technologiesArray" :key="element.id">
               <td>{{ element.name }}</td>
               <td>
-                <button class="btn btn-success" @click="editTechnology(element)">Editar</button>&nbsp;
+                <button class="btn btn-success" @click="btnEditTechnology(element)">Editar</button>&nbsp;
                 <button class="btn btn-danger" @click="deleteTechnology(element.id)">Eliminar</button>&nbsp;
                 <button class="btn btn-primary" @click="deleteTechnology(element.id)">Detalles</button>&nbsp;
                 </td>
@@ -39,6 +39,19 @@
           </table>
           <button @click="btnIrANuevo" class="btn btn-success btn-lg mb-3" >Nueva Tecnología</button>
         </div>
+      </div>
+
+<div v-if="editTechnologyView" class="d-flex justify-content-around">
+        <div class="card col-5 text-center bg-light align-items-center shadow-lg">
+          <h4 class="m-3">Ingrese el nombre de una Tecnología</h4>
+          <input v-model="technology.name" class="mb-3"  placeholder="Ejemplo: Javascript">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+            <button class="btn btn-primary btn-lg mb-2" @click="editTechnology" >Editar</button>&nbsp;
+            <button @click="btnRegresarEdit" class="btn btn-danger btn-lg mb-2" >Regresar</button>
+            </div>
+          </div>
+          </div>
       </div>
 
     </div>
@@ -55,55 +68,46 @@ export default {
     return{
       tableView: true,
       newTechnologyView: false,
+      editTechnologyView: false,
       technology:{
-        name: null
+        name: null,
       },
       technologyEdit:{
-        id : null,
-        name: null
+        id: null,
+        name: null,
       },
       idObj: {
-        id: null
+        id: null,
       },
       technologiesArray: null,
     };
   },
   methods:{
-    createTechnology(){
+    createTechnology() {
       axios.post("http://localhost:3000/technologies", this.technology).then((result) => {
-        console.log(result);
-        this.pullTechnologies();
+      console.log(result);
+      this.pullTechnologies();
       });
       alert("tecnologia guardada");
-      // Swal.fire({
-      //   position: 'top-center',
-      //   icon: 'success',
-      //   title: 'Tecnología guardada correctamente',
-      //   showConfirmButton: false,
-      //   timer: 1500
-      // })
-      // this.tableView = true;
       this.newTechnologyView = false;
-      this.tableView = true,
-    },
+      this.tableView = true;
+},
     pullTechnologies(){
       axios.get("http://localhost:3000/technologies").then((result) => {
         this.technologiesArray = result.data;
         console.log(result);
       });
 },
-    deleteTechnology(id){
+    deleteTechnology(id) {
       this.idObj.id = id;
-      axios.delete("http://localhost:3000/technologies" + this.idObj.id, this.idObj).then((result) => {
-        console.log(result);
+      axios.delete("http://localhost:3000/technologies/" + this.idObj.id, this.idObj).then((result) => {
+         console.log(result);
          this.pullTechnologies();
         alert("Eliminado correctamente");
       });
     },
-    editTechnology(tech){
-      this.technologyEdit.id = tech.id;
-      this.technologyEdit.name = this.technology.name;
-      axios.put("http://localhost:3000/technologies/" + tech.id, this.technologyEdit).then((result) => {
+    editTechnology(){
+      axios.put("http://localhost:3000/technologies/" + this.technologyEdit.id , this.technologyEdit).then((result) => {
         console.log(result);
         alert("Editado correctamente");
          this.pullTechnologies();
@@ -114,9 +118,21 @@ export default {
       this.newTechnologyView = false;
     },
     btnIrANuevo(){
+      this.technology.name = null;
       this.tableView = false;
       this.newTechnologyView = true;
-    }
+    },
+    btnEditTechnology(tech){
+      this.editTechnologyView = true;
+      this.tableView = false;
+      this.technologyEdit.id = tech.id;
+      this.technology.name = tech.name;
+      this.technologyEdit.name = this.technology.name;
+    },
+    btnRegresarEdit(){
+      this.tableView = true;
+      this.editTechnologyView = false;
+    },
 
   },
   created(){
