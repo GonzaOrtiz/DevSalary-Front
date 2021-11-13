@@ -32,12 +32,11 @@
               <td>
                 <button class="btn btn-success" @click="btnEditTechnology(element)">Editar</button>&nbsp;
                 <button class="btn btn-danger" @click="deleteTechnology(element.id)">Eliminar</button>&nbsp;
-                <button class="btn btn-primary" @click="deleteTechnology(element.id)">Detalles</button>&nbsp;
                 </td>
             </tr>
             </tbody>
           </table>
-          <button @click="btnIrANuevo" class="btn btn-success btn-lg mb-3" >Nueva Tecnología</button>
+          <button @click="btnIrANuevo" class="btn btn-primary btn-lg mb-3" >Nueva Tecnología</button>
         </div>
       </div>
 
