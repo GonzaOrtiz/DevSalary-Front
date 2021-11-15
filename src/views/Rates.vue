@@ -45,12 +45,11 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Tecnología</label>
-                <select  v-model="rate.technologyId" >
-                    <option v-for="element in technologiesArray" :key="technologiesArray" v-bind:value="element.id">
+                <select class="form-control" v-model="rate.technologyId" >
+                    <option v-for="element in technologiesArray" :key="element.id" v-bind:value="element.id">
                        {{element.name}}
                     </option>
                 </select>
-                <input v-model="rate.technologyId" class="form-control">
               </div>
             </div>
             <div class="col-lg-6">
