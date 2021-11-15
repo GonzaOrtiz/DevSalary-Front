@@ -8,7 +8,7 @@
         <div class="card col-5 text-center bg-light align-items-center shadow-lg">
         <div class="col-lg-6">
           <div class="mb-3">
-          <label class="form-label">Margen Bruto</label>
+          <label class="form-label">Nombre</label>
           <input v-model="technology.name" class="form-control">
           </div>
         </div>

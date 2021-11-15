@@ -41,23 +41,19 @@
         </div>
       </div>
 
-
-
-
-
       <div v-if="newRatesView" class="d-flex justify-content-around">
         <div class="card col-5 text-center bg-light align-items-center shadow-lg">
           <div class="row">
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Tecnología</label>
-                <input class="form-control">
+                <input v-model="rate.technologyId" class="form-control">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Antiguedad</label>
-                <input class="form-control">
+                <input v-model="rate.seniority" class="form-control">
               </div>
             </div>
           </div>
@@ -66,13 +62,13 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Idioma</label>
-                <input class="form-control">
+                <input v-model="rate.language" class="form-control">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Salario Promedio</label>
-                <input class="form-control">
+                <input v-model="rate.average_salary" class="form-control">
               </div>
             </div>
           </div>
@@ -80,13 +76,13 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Margen Bruto</label>
-                <input class="form-control">
+                <input v-model="rate.gross_margin" class="form-control">
               </div>
             </div>
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Divisa</label>
-                <input class="form-control">
+                <input v-model="rate.currency" class="form-control">
               </div>
             </div>
           </div>
@@ -127,7 +123,7 @@ export default {
       tableView: true,
       rate: {
         name: null,
-        technology_id : null,
+        technologyId : null,
         seniority: null,
         language: null,
         average_salary: null,
@@ -142,6 +138,7 @@ export default {
       axios.get("http://localhost:3000/rates").then((result) => {
         this.ratesArray = result.data;
         console.log(result);
+        console.log(this.ratesArray);
       });
     },
     createRate() {
