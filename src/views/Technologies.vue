@@ -6,8 +6,12 @@
       <hr>
       <div v-if="newTechnologyView" class="d-flex justify-content-around">
         <div class="card col-5 text-center bg-light align-items-center shadow-lg">
-          <h4 class="m-3">Ingrese el nombre de una Tecnología</h4>
-          <input v-model="technology.name" class="mb-3"  placeholder="Ejemplo: Javascript">
+        <div class="col-lg-6">
+          <div class="mb-3">
+          <label class="form-label">Margen Bruto</label>
+          <input v-model="technology.name" class="form-control">
+          </div>
+        </div>
           <div class="row">
             <div class="col-sm-12 text-center">
             <button class="btn btn-primary btn-lg mb-2" @click="createTechnology" >Crear</button>&nbsp;
@@ -23,7 +27,7 @@
             <thead>
             <tr>
               <th scope="col">Nombre</th>
-              <th scope="col">Editar/Eliminar/Detalle</th>
+              <th scope="col">Editar/Eliminar</th>
             </tr>
             </thead>
             <tbody>
@@ -42,8 +46,12 @@
 
 <div v-if="editTechnologyView" class="d-flex justify-content-around">
         <div class="card col-5 text-center bg-light align-items-center shadow-lg">
-          <h4 class="m-3">Ingrese el nombre de una Tecnología</h4>
-          <input v-model="technology.name" class="mb-3"  placeholder="Ejemplo: Javascript">
+          <div class="col-lg-6">
+            <div class="mb-3">
+          <label class="form-label">Margen Bruto</label>
+          <input v-model="technology.name" class="form-control">
+            </div>
+          </div>
           <div class="row">
             <div class="col-sm-12 text-center">
             <button class="btn btn-primary btn-lg mb-2" @click="editTechnology" >Editar</button>&nbsp;
