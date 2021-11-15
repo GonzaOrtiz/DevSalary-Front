@@ -10,7 +10,6 @@
           <table class="table">
             <thead>
             <tr>
-              <th scope="col">Nombre</th>
               <th scope="col">Tecnología</th>
               <th scope="col">Antiguedad</th>
               <th scope="col">Idioma</th>
@@ -22,8 +21,7 @@
             </thead>
             <tbody>
             <tr v-for="element in ratesArray" :key="element.id">
-              <td>{{ element.name }}</td>
-              <td>{{ element.technology_id }}</td>
+              <td>{{ element.technologyId }}</td>
               <td>{{ element.seniority }}</td>
               <td>{{ element.language }}</td>
               <td>{{ element.average_salary }}</td>
@@ -47,6 +45,11 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Tecnología</label>
+                <select  v-model="rate.technologyId" >
+                    <option v-for="element in technologiesArray" :key="technologiesArray" v-bind:value="element.id">
+                       {{element.name}}
+                    </option>
+                </select>
                 <input v-model="rate.technologyId" class="form-control">
               </div>
             </div>
@@ -131,6 +134,7 @@ export default {
         currency: null,
        },
       ratesArray: null,
+      technologiesArray:null,
     };
   },
   methods:{
@@ -150,9 +154,16 @@ export default {
       // this.newTechnologyView = false;
       // this.tableView = true;
     },
+     pullTechnologies(){
+      axios.get("http://localhost:3000/technologies").then((result) => {
+        this.technologiesArray = result.data;
+        console.log(result);
+      });
+},
   },
   created(){
     this.pullRates();
+    this.pullTechnologies();
   }
 }
 </script>
