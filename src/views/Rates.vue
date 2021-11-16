@@ -275,7 +275,6 @@ export default {
       this.rate.gross_margin = rate.gross_margin;
       this.rate.currency = rate.currency;
 
-      this.editRate();
     },
     goToNew(){
       this.tableView = false;
