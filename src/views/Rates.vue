@@ -249,6 +249,7 @@ export default {
       });
     },
     editRate(){
+      alert('boton edit ok');
       if(this.rate.seniority === 'Junior' ) this.rate.seniority = 1;
       if(this.rate.seniority === 'Semi-Senior' ) this.rate.seniority = 2;
       if(this.rate.seniority === 'Senior' ) this.rate.seniority = 3;
@@ -259,7 +260,7 @@ export default {
       axios.put("http://localhost:3000/rates/" + this.rate.id , this.rate).then((result) => {
         console.log(result);
         alert("Editado correctamente");
-        this.pullTechnologies();
+        this.pullRates();
         this.tableView = true;
         this.editRatesView = false;
       });
