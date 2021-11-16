@@ -255,6 +255,7 @@ export default {
 
       if(this.rate.language === 'Inglés' ) this.rate.language = 1;
       if(this.rate.language === 'Español' ) this.rate.language = 2;
+
       axios.put("http://localhost:3000/rates/" + this.rate.id , this.rate).then((result) => {
         console.log(result);
         alert("Editado correctamente");
@@ -274,6 +275,7 @@ export default {
       this.rate.gross_margin = rate.gross_margin;
       this.rate.currency = rate.currency;
 
+      this.editRate();
     },
     goToNew(){
       this.tableView = false;
