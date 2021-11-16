@@ -267,10 +267,10 @@ export default {
       this.editRatesView = true;
       this.tableView = false;
       this.rate.id = rate.id;
-      this.rate.technologyId = rate.technologyId;
-      this.rate.language = rate.language;
+      this.rate.technologyId = rate.technology.name;
+      this.rate.language = this.showLanguage(rate.language);
       this.rate.average_salary = rate.average_salary;
-      this.rate.seniority = rate.seniority;
+      this.rate.seniority = this.showSeniority(rate.seniority);
       this.rate.gross_margin = rate.gross_margin;
       this.rate.currency = rate.currency;
 
