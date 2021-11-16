@@ -28,7 +28,7 @@
               <td>{{ element.gross_margin }}</td>
               <td>{{ element.currency }}</td>
               <td>
-                <button class="btn btn-success" @click="btnEditRate(element)">Editar</button>&nbsp;
+                <button class="btn btn-success" @click="btnEditRate(element,element.technology.name, element.currency )">Editar</button>&nbsp;
                 <button class="btn btn-danger" @click="deleteRate(element.id)">Eliminar</button>&nbsp;
               </td>
             </tr>
@@ -244,12 +244,11 @@ export default {
       this.idObj.id = id;
       axios.delete("http://localhost:3000/rates/" + this.idObj.id, this.idObj).then((result) => {
         console.log(result);
-        this.pullTechnologies();
+        this.pullRates();
         alert("Eliminado correctamente");
       });
     },
     editRate(){
-      alert('boton edit ok');
       if(this.rate.seniority === 'Junior' ) this.rate.seniority = 1;
       if(this.rate.seniority === 'Semi-Senior' ) this.rate.seniority = 2;
       if(this.rate.seniority === 'Senior' ) this.rate.seniority = 3;
@@ -265,16 +264,16 @@ export default {
         this.editRatesView = false;
       });
     },
-    btnEditRate(rate){
+    btnEditRate(rate, name, currency){
       this.editRatesView = true;
       this.tableView = false;
       this.rate.id = rate.id;
-      this.rate.technologyId = rate.technology.name;
+      this.rate.technologyId = name;
       this.rate.language = this.showLanguage(rate.language);
       this.rate.average_salary = rate.average_salary;
       this.rate.seniority = this.showSeniority(rate.seniority);
       this.rate.gross_margin = rate.gross_margin;
-      this.rate.currency = rate.currency;
+      this.rate.currency = currency;
 
     },
     goToNew(){
