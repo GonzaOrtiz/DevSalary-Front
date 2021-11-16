@@ -21,7 +21,7 @@
             </thead>
             <tbody>
             <tr v-for="element in ratesArray" :key="element.id">
-              <td>{{ element.technology }} </td>
+              <td>{{ element.technology.name }} </td>
               <td>{{ showSeniority(element.seniority) }} </td>
               <td>{{ showLanguage(element.language) }}</td>
               <td>{{ element.average_salary }}</td>
@@ -249,9 +249,9 @@ export default {
       });
     },
     editRate(){
-      if(this.rates.seniority === 'Junior' ) this.rates.seniority = 1;
-      if(this.rates.seniority === 'Semi-Senior' ) this.rates.seniority = 2;
-      if(this.rates.seniority === 'Senior' ) this.rates.seniority = 3;
+      if(this.rate.seniority === 'Junior' ) this.rate.seniority = 1;
+      if(this.rate.seniority === 'Semi-Senior' ) this.rate.seniority = 2;
+      if(this.rate.seniority === 'Senior' ) this.rate.seniority = 3;
 
       if(this.rate.language === 'Inglés' ) this.rate.language = 1;
       if(this.rate.language === 'Español' ) this.rate.language = 2;
