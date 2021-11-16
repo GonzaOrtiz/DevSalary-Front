@@ -22,8 +22,8 @@
             <tbody>
             <tr v-for="element in ratesArray" :key="element.id">
               <td>{{ element.technologyId }} tech</td>
-              <td>{{ element.seniority }} seniority</td>
-              <td>{{ element.language }}</td>
+              <td>{{ showSeniority(element.seniority) }} seniority</td>
+              <td>{{ showLanguage(element.language) }}</td>
               <td>{{ element.average_salary }}</td>
               <td>{{ element.gross_margin }}</td>
               <td>{{ element.currency }}</td>
@@ -42,7 +42,7 @@
         <div class="card col-5 text-center bg-light align-items-center shadow-lg">
           <div class="row">
             <div class="col-lg-6">
-              <div class="mb-3">
+              <div class="mb-6">
                 <label class="form-label">Tecnología</label>
                 <select class="form-control" v-model="rate.technologyId" >
                     <option v-for="element in technologiesArray" :key="element.id" v-bind:value="element.id">
@@ -54,7 +54,12 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Antiguedad</label>
-                <input v-model="rate.seniority" class="form-control">
+<!--                <input v-model="rate.seniority" class="form-control">-->
+                <select class="form-control" v-model="rate.seniority" >
+                  <option>Junior</option>
+                  <option>Semi-Senior</option>
+                  <option>Senior</option>
+                </select>
               </div>
             </div>
           </div>
@@ -63,7 +68,11 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Idioma</label>
-                <input v-model="rate.language" class="form-control">
+<!--                <input v-model="rate.language" class="form-control">-->
+                <select class="form-control" v-model="rate.language" >
+                  <option>Inglés</option>
+                  <option>Español</option>
+                </select>
               </div>
             </div>
             <div class="col-lg-6">
@@ -113,7 +122,12 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Antiguedad</label>
-                <input v-model="rate.seniority" class="form-control">
+<!--                <input v-model="rate.seniority" class="form-control">-->
+                <select class="form-control" v-model="rate.seniority" >
+                  <option>Junior</option>
+                  <option>Semi-Senior</option>
+                  <option>Senior</option>
+                </select>
               </div>
             </div>
           </div>
@@ -122,7 +136,11 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Idioma</label>
-                <input v-model="rate.language" class="form-control">
+<!--                <input v-model="rate.language" class="form-control">-->
+                <select class="form-control" v-model="rate.language" >
+                  <option>Inglés</option>
+                  <option>Español</option>
+                </select>
               </div>
             </div>
             <div class="col-lg-6">
@@ -193,6 +211,13 @@ export default {
       });
     },
     createRate() {
+      if(this.rate.seniority === 'Junior' ) this.rate.seniority = 1;
+      if(this.rate.seniority === 'Semi-Senior' ) this.rate.seniority = 2;
+      if(this.rate.seniority === 'Senior' ) this.rate.seniority = 3;
+
+      if(this.rate.language === 'Inglés' ) this.rate.language = 1;
+      if(this.rate.language === 'Español' ) this.rate.language = 2;
+
       axios.post("http://localhost:3000/rates", this.rate).then((result) => {
         console.log(result);
         this.pullRates();
@@ -216,6 +241,12 @@ export default {
       });
     },
     editRate(){
+      if(this.rates.seniority === 'Junior' ) this.rates.seniority = 1;
+      if(this.rates.seniority === 'Semi-Senior' ) this.rates.seniority = 2;
+      if(this.rates.seniority === 'Senior' ) this.rates.seniority = 3;
+
+      if(this.rate.language === 'Inglés' ) this.rate.language = 1;
+      if(this.rate.language === 'Español' ) this.rate.language = 2;
       axios.put("http://localhost:3000/rates/" + this.rate.id , this.rate).then((result) => {
         console.log(result);
         alert("Editado correctamente");
@@ -243,6 +274,25 @@ export default {
     goBackToTable(){
       this.tableView = true;
       this.newRatesView= false;
+    },
+    showLanguage(language){
+      if(language === 1){
+        return 'Español';
+      }
+      if(language === 2){
+        return 'Inglés';
+      }
+    },
+    showSeniority(seniority){
+      if(seniority === 1){
+        return 'Junior';
+      }
+      if(seniority === 2){
+        return 'Semi-Senior';
+      }
+      if(seniority === 3){
+        return 'Senior';
+      }
     },
   },
   created(){
