@@ -21,8 +21,8 @@
             </thead>
             <tbody>
             <tr v-for="element in ratesArray" :key="element.id">
-              <td>{{ element.technologyId }} tech</td>
-              <td>{{ showSeniority(element.seniority) }} seniority</td>
+              <td>{{ element.technology }} </td>
+              <td>{{ showSeniority(element.seniority) }} </td>
               <td>{{ showLanguage(element.language) }}</td>
               <td>{{ element.average_salary }}</td>
               <td>{{ element.gross_margin }}</td>
@@ -92,7 +92,11 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Divisa</label>
-                <input v-model="rate.currency" class="form-control">
+<!--                <input v-model="rate.currency" class="form-control">-->
+                <select class="form-control" v-model="rate.currency" >
+                  <option>Ars</option>
+                  <option>URS</option>
+                </select>
               </div>
             </div>
           </div>
@@ -160,7 +164,11 @@
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Divisa</label>
-                <input v-model="rate.currency" class="form-control">
+<!--                <input v-model="rate.currency" class="form-control">-->
+                <select class="form-control" v-model="rate.currency" >
+                  <option>ARS</option>
+                  <option>URS</option>
+                </select>
               </div>
             </div>
           </div>
@@ -256,7 +264,7 @@ export default {
       });
     },
     btnEditRate(rate){
-      this.editTechnology = true;
+      this.editRatesView = true;
       this.tableView = false;
       this.rate.id = rate.id;
       this.rate.technologyId = rate.technologyId;
@@ -274,6 +282,7 @@ export default {
     goBackToTable(){
       this.tableView = true;
       this.newRatesView= false;
+      this.editRatesView = false;
     },
     showLanguage(language){
       if(language === 1){
