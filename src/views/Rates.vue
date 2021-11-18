@@ -95,7 +95,7 @@
 <!--                <input v-model="rate.currency" class="form-control">-->
                 <select class="form-control" v-model="rate.currency" >
                   <option>ARS</option>
-                  <option>URS</option>
+                  <option>USD</option>
                 </select>
               </div>
             </div>
@@ -167,7 +167,7 @@
 <!--                <input v-model="rate.currency" class="form-control">-->
                 <select class="form-control" v-model="rate.currency" >
                   <option>ARS</option>
-                  <option>URS</option>
+                  <option>USD</option>
                 </select>
               </div>
             </div>

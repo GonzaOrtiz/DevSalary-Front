@@ -49,7 +49,7 @@
                 <label class="form-label">Divisa</label>
                 <select class="form-control" v-model="rate.currency">
                   <option>ARS</option>
-                  <option>URS</option>
+                  <option>USD</option>
                 </select>
               </div>
             </div>
