@@ -134,6 +134,14 @@ export default {
         this.ratesFilterArray = result.data;
         console.log(result);
         console.log(this.ratesFilterArray);
+
+
+        if(this.rate.seniority === '1' ) this.rate.seniority = "Junior";
+        if(this.rate.seniority === '2' ) this.rate.seniority = "Semi-Senior";
+        if(this.rate.seniority === '3' ) this.rate.seniority = "Senior";
+
+        if(this.rate.language === '2' ) this.rate.language = "Inglés";
+        if(this.rate.language === '1' ) this.rate.language = "Español";
       });
     },
     showLanguage(language){
