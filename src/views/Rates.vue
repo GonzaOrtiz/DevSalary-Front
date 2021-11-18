@@ -94,7 +94,7 @@
                 <label class="form-label">Divisa</label>
 <!--                <input v-model="rate.currency" class="form-control">-->
                 <select class="form-control" v-model="rate.currency" >
-                  <option>Ars</option>
+                  <option>ARS</option>
                   <option>URS</option>
                 </select>
               </div>
@@ -286,10 +286,10 @@ export default {
       this.editRatesView = false;
     },
     showLanguage(language){
-      if(language === 1){
+      if(language === 2){
         return 'Español';
       }
-      if(language === 2){
+      if(language === 1){
         return 'Inglés';
       }
     },

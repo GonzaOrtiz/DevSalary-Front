@@ -48,7 +48,7 @@
               <div class="mb-3">
                 <label class="form-label">Divisa</label>
                 <select class="form-control" v-model="rate.currency">
-                  <option>Ars</option>
+                  <option>ARS</option>
                   <option>URS</option>
                 </select>
               </div>
@@ -123,12 +123,12 @@ export default {
       });
     },
     filter(){
-      if(this.rate.seniority === 'Junior' ) this.rate.seniority = 1;
-      if(this.rate.seniority === 'Semi-Senior' ) this.rate.seniority = 2;
-      if(this.rate.seniority === 'Senior' ) this.rate.seniority = 3;
+      if(this.rate.seniority === 'Junior' ) this.rate.seniority = "1";
+      if(this.rate.seniority === 'Semi-Senior' ) this.rate.seniority = "2";
+      if(this.rate.seniority === 'Senior' ) this.rate.seniority = "3";
 
-      if(this.rate.language === 'Inglés' ) this.rate.language = 1;
-      if(this.rate.language === 'Español' ) this.rate.language = 2;
+      if(this.rate.language === 'Inglés' ) this.rate.language = "1";
+      if(this.rate.language === 'Español' ) this.rate.language = "2";
 
       axios.post("http://localhost:3000/rates/filter", this.rate).then((result) => {
         this.ratesFilterArray = result.data;
