@@ -127,8 +127,8 @@ export default {
       if(this.rate.seniority === 'Semi-Senior' ) this.rate.seniority = "2";
       if(this.rate.seniority === 'Senior' ) this.rate.seniority = "3";
 
-      if(this.rate.language === 'Inglés' ) this.rate.language = "1";
-      if(this.rate.language === 'Español' ) this.rate.language = "2";
+      if(this.rate.language === 'Inglés' ) this.rate.language = "2";
+      if(this.rate.language === 'Español' ) this.rate.language = "1";
 
       axios.post("http://localhost:3000/rates/filter", this.rate).then((result) => {
         this.ratesFilterArray = result.data;
