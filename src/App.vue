@@ -13,10 +13,13 @@
         <li class="nav-item active">
           <a class="nav-link"  @click="goToTechnologies">Tecnologías <span class="sr-only"></span></a>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link">Alumnos</a>
+        <li class="nav-item active">
+          <a class="nav-link"  @click="goToCalculator">Calculadora <span class="sr-only"></span></a>
         </li>
+
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link">Alumnos</a>-->
+<!--        </li>-->
       </ul>
     </div>
   </nav>
@@ -36,6 +39,9 @@ export default {
     },
     goToRates() {
       this.$router.push("/Rates");
+    },
+    goToCalculator() {
+      this.$router.push("/Calculator");
     }
   }
 }
