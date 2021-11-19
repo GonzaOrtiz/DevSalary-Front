@@ -75,7 +75,7 @@
               <th scope="col">Tecnología</th>
               <th scope="col">Antiguedad</th>
               <th scope="col">Idioma</th>
-              <th scope="col">Salario Promedio</th>
+              <th scope="col">Salario</th>
               <th scope="col">Margen Bruto</th>
               <th scope="col">Divisa</th>
             </tr>

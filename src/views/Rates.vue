@@ -13,7 +13,7 @@
               <th scope="col">Tecnología</th>
               <th scope="col">Antiguedad</th>
               <th scope="col">Idioma</th>
-              <th scope="col">Salario Promedio</th>
+              <th scope="col">Salario</th>
               <th scope="col">Margen Bruto</th>
               <th scope="col">Divisa</th>
               <th scope="col">Editar/Eliminar</th>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-lg-6">
               <div class="mb-3">
-                <label class="form-label">Salario Promedio</label>
+                <label class="form-label">Salario</label>
                 <input v-model="rate.average_salary" class="form-control">
               </div>
             </div>
@@ -149,7 +149,7 @@
             </div>
             <div class="col-lg-6">
               <div class="mb-3">
-                <label class="form-label">Salario Promedio</label>
+                <label class="form-label">Salario</label>
                 <input v-model="rate.average_salary" class="form-control">
               </div>
             </div>
